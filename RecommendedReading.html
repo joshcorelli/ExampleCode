@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Poland Baptist Church App</title>
+
+  <link rel="stylesheet" href="/static/css/bulma.min.css">
+  <link rel="stylesheet" href="/static/css/plyr.css" />
+  <link rel="stylesheet" href="/static/css/index.css" />
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="PBC App">
+  <meta name="apple-mobile-web-app-title" content="PBC App">
+  <meta name="theme-color" content="#2D3142">
+  <meta name="msapplication-navbutton-color" content="#2D3142">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/static/icons/png/ms-icon-144x144.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-starturl" content="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="57x57" href="/static/icons/png/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/static/icons/png/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/static/icons/png/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/icons/png/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/static/icons/png/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/png/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/static/icons/png/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/png/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/png/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/static/icons/png/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/png/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/static/icons/png/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/png/favicon-16x16.png">
+</head>
+
+
+<body>
+  <main class="splash">
+    <noscript>
+      <!-- anchor linking to external file -->
+      <p class="is-size-3 has-text-centered">JavaScript disabled, some functionality will not work!</p>
+    </noscript>
+    <nav class="navbar is-dark is-fixed-bottom" role="navigation" aria-label="main navigation">
+      <div id="navMenu" class="navbar-brand navbar-center">
+
+        <a class="navbar-item is-expanded add-navbar-spacing is-block has-text-centered has-text-white <% if (page == 'livestream') { %>is-active<% } %>"
+            href="/public/livestream">
+            <img class="is-white-icon image is-centered is-bottom-nav-image" src="/static/icons/svg/live.svg" alt="Live Stream" />
+            <p class="is-size-7-mobile is-size-6-tablet is-size-6-desktop">Live Stream</p>
+          </a>
+          <!-- Check if user is approved -->
+          <a class="navbar-item is-expanded add-navbar-spacing is-block has-text-centered has-text-white <% if (page == 'sermons') { %>is-active<% } %>"
+            href="/public/sermons">
+            <img class="is-white-icon image is-centered is-bottom-nav-image" src="/static/icons/svg/sermon.svg" alt="Sermons" />
+            <p class="is-size-7-mobile is-size-6-tablet is-size-6-desktop">Sermons</p>
+          </a>
+          <a class="navbar-item is-expanded add-navbar-spacing is-block has-text-centered has-text-white <% if (page == 'daily-devos') { %>is-active<% } %>"
+            href="/public/daily-devos">
+            <img class="is-white-icon image is-centered is-bottom-nav-image" src="/static/icons/svg/daily-devo.svg"
+              alt="Daily Devotionals" />
+            <p class="is-size-7-mobile is-size-6-tablet is-size-6-desktop">Daily Devos</p>
+          </a>
+          <a class="navbar-item is-expanded add-navbar-spacing is-block has-text-centered has-text-white" href="/login">
+            <img class="is-white-icon image is-centered is-bottom-nav-image" src="/static/icons/svg/account.svg"
+              alt="Login" />
+            <p class="is-size-7-mobile is-size-6-tablet is-size-6-desktop">Login</p>
+          </a>
+          <a class="navbar-item is-expanded add-navbar-spacing is-block has-text-centered has-text-white spa" id="moreButton"
+            href="#more">
+            <img class="is-white-icon image is-centered is-bottom-nav-image" src="/static/icons/svg/more.svg" alt="More" />
+            <p class="is-size-7-mobile is-size-6-tablet is-size-6-desktop">More</p>
+          </a>
+
+      </div>
+    </nav>
+    <section id="notificationArea"></section>
+    
+
+    <!--Html goes here-->
+    <section id="Recommendedreading" class="hero is-fullheight is-fullheight partial is-active">
+        <article class="content is-fluid is-fullhd">
+          <div class="tile is-parent">
+            <div class="tile is-child is-light box is-vertical">
+              <h3 class="has-text-dark is-size-3 has-text-centered is-centered"><i>Recommended Reading</i></h3>
+              <hr class="is-dark">
+
+              <!--Alphabetical nav bar here-->
+              <div id="Alphabet" class="title is-4 has-text-centered">
+                <a id="ABC" href="#ABCtile" data-tile="#ABCtile" class="alphabet">A B C</a>
+                <a id="DEF" href="#DEFtile" data-tile="#DEFtile" class="alphabet">D E F</a>
+                <a id="GHI" href="#GHItile" data-tile="#GHItile" class="alphabet">G H I</a>
+                <a id="JKL" href="#JKLtile" data-tile="#JKLtile" class="alphabet">J K L</a>
+                <a id="MNO" href="#MNOtile" data-tile="#MNOtile" class="alphabet">M N O</a>
+                <a id="PQR" href="#PQRtile" data-tile="#PQRtile" class="alphabet">P Q R</a>
+                <a id="STU" href="#STUtile" data-tile="#STUtile" class="alphabet">S T U</a>
+                <a id="VWX" href="#VWXtile" data-tile="#VWXtile" class="alphabet">V W X</a>
+                <a id="YZ" href="#YZtile" data-tile="#YZtile" class="alphabet">Y Z</a>
+              </div>
+              
+              <input class="input is-primary is-medium" id="searchBar" type="text" placeholder="Search for book or author">
+
+              <br>
+              <br>
+
+              <div id="tiles">
+
+                <!--one line of code below can be taken out depending on wanted format for tile layout-->
+                <div class="tile is-ancestor">
+
+                  <div id="ABCtile" class="tile is-parent alphabetTile A">
+                    <article class="tile is-child box">
+                      <p class="title">A</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Anxious-Nothing-Finding-Chaotic
+                            -World/dp/0718074211/ref=sr_1_5?crid=OY680F4E64RH&dchild=1&keywor
+                            ds=christian+book+anxiety&qid=1600356015&sprefix=chirstian+book+a
+                            %2Caps%2C209&sr=8-5">
+                            Anxious for Nothing: Finding Calm in a Chaotic World <br>
+                            Author: Mac Lucado</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div id="ABCtile" class="tile is-parent alphabetTile B">
+                    <article class="tile is-child box ">
+                      <p class="title">B</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Band-Belie
+                            vers-Book-1-Dissent-ebook/dp/B078SKRS9Y/ref=
+                            sr_1_1?crid=TXB3BN2YGZMI&dchild=1&keywords=b
+                            and+of+believers%2C+book+1+dissent&qid=16003
+                            56428&sprefix=band+of+believers+book+1+di%2C
+                            aps%2C187&sr=8-1">
+                            Band of Believers, Book 1: Dissent <br>
+                            Author: Jamie Lee Grey</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                  
+                  <div id="ABCtile" class="tile is-parent alphabetTile C">
+                    <article class="tile is-child box">
+                      <p class="title">C</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Christian-Theology-Biblical-
+                            Story-Faith/dp/1433651025/ref=sr_1_2?dchild=1&keywords=christi
+                            an+book+b&qid=1600356193&s=books&sr=1-2">
+                            Christian Theology: The Biblical Story and Our Faith <br>
+                            Author: Christopher W. Morgan</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+
+                <!--one line of code below can be taken out depending on wanted format for tile layout-->
+                <div class="tile is-ancestor">
+                  <div id="DEFtile" class="tile is-parent alphabetTile D">
+                    <article class="tile is-child box">
+                      <p class="title">D</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Driven-Desire-Insatiable-Longings-
+                            Incredible/dp/1951991095/ref=sr_1_1?dchild=1&keywords=desire&qid=16
+                            10040737&s=books&sr=1-1">
+                            Driven By Desire: Insatiable Longings, Incredible Promises, Infinite God <br>
+                            Author: Thomas Fitzpatrick</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div id="DEFtile" class="tile is-parent alphabetTile E">
+                    <article class="tile is-child box">
+                      <p class="title">E</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Everybody-Always-Becoming-Setbacks
+                            -Difficult-ebook/dp/B075SMCGJB/ref=sr_1_2_sspa?dchild=1&keywords=christian
+                            +books&qid=1610040505&s=books&sr=1-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlma
+                            WVyPUExWDUzOEs5VEo3REtHJmVuY3J5cHRlZElkPUEwNzcxMTcxMUpaUzRBRVZaQjQ1JmVuY3J5
+                            cHRlZEFkSWQ9QTAwNzEyMDQxSFBSQVJHWDMxSkwwJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1
+                            jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==">
+                            Everybody, Always: Becoming Love in a World Full of Setbacks and Difficult People <br>
+                            Author: Bob Goff</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                  
+                  <div id="DEFtile" class="tile is-parent alphabetTile F">
+                    <article class="tile is-child box">
+                      <p class="title">F</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Faith-After-Doubt-Beliefs-Stopped/dp/1250262771">
+                            Faith After Doubt: Why Your Beliefs Stopped Working and What to Do About It <br>
+                            Author: Brian D. McLaren</a></li>
+                            <li><a href="https://www.amazon.com/Freedom-Anxious-Thoughts-Feelings-Mindful
+                              ness/dp/1684032326/ref=sr_1_2?dchild=1&keywords=from+anxious&qid=1610489976
+                              &s=books&sr=1-2">
+                              Freedom from Anxious Thoughts and Feelings (A Two-Step Mindfulness Approach for 
+                              Moving Beyond Fear and Worry) <br>
+                              Author: Scott Symington</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+
+                <!--one line of code below can be added depending on wanted format for tile layout-->
+                <!--<div class="tile is-ancestor">-->
+                  <div id="GHItile" class="tile is-parent alphabetTile G">
+                    <article class="tile is-child box">
+                      <p class="title">G</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Anxious-Nothing-Finding-Chaotic
+                            -World/dp/0718074211/ref=sr_1_5?crid=OY680F4E64RH&dchild=1&keywor
+                            ds=christian+book+anxiety&qid=1600356015&sprefix=chirstian+book+a
+                            %2Caps%2C209&sr=8-5">
+                            Anxious for Nothing: Finding Calm in a Chaotic World <br>
+                            Author: Mac Lucado</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div id="GHItile" class="tile is-parent alphabetTile H">
+                    <article class="tile is-child box">
+                      <p class="title">H</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Band-Belie
+                            vers-Book-1-Dissent-ebook/dp/B078SKRS9Y/ref=
+                            sr_1_1?crid=TXB3BN2YGZMI&dchild=1&keywords=b
+                            and+of+believers%2C+book+1+dissent&qid=16003
+                            56428&sprefix=band+of+believers+book+1+di%2C
+                            aps%2C187&sr=8-1">
+                            Band of Believers, Book 1: Dissent <br>
+                            Author: Jamie Lee Grey</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                  
+                  <div id="GHItile" class="tile is-parent alphabetTile I">
+                    <article class="tile is-child box">
+                      <p class="title">I</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Christian-Theology-Biblical-
+                            Story-Faith/dp/1433651025/ref=sr_1_2?dchild=1&keywords=christi
+                            an+book+b&qid=1600356193&s=books&sr=1-2">
+                            Christian Theology: The Biblical Story and Our Faith <br>
+                            Author: Christopher W. Morgan</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                <!--</div>-->
+
+
+                  <div id="JKLtile" class="tile is-parent alphabetTile J">
+                    <article class="tile is-child box">
+                      <p class="title">J</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Anxious-Nothing-Finding-Chaotic
+                            -World/dp/0718074211/ref=sr_1_5?crid=OY680F4E64RH&dchild=1&keywor
+                            ds=christian+book+anxiety&qid=1600356015&sprefix=chirstian+book+a
+                            %2Caps%2C209&sr=8-5">
+                            Anxious for Nothing: Finding Calm in a Chaotic World <br>
+                            Author: Mac Lucado</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div id="JKLtile" class="tile is-parent alphabetTile K">
+                    <article class="tile is-child box">
+                      <p class="title">K</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Band-Belie
+                            vers-Book-1-Dissent-ebook/dp/B078SKRS9Y/ref=
+                            sr_1_1?crid=TXB3BN2YGZMI&dchild=1&keywords=b
+                            and+of+believers%2C+book+1+dissent&qid=16003
+                            56428&sprefix=band+of+believers+book+1+di%2C
+                            aps%2C187&sr=8-1">
+                            Band of Believers, Book 1: Dissent <br>
+                            Author: Jamie Lee Grey</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                  
+                  <div id="JKLtile" class="tile is-parent alphabetTile L">
+                    <article class="tile is-child box">
+                      <p class="title">L</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Christian-Theology-Biblical-
+                            Story-Faith/dp/1433651025/ref=sr_1_2?dchild=1&keywords=christi
+                            an+book+b&qid=1600356193&s=books&sr=1-2">
+                            Christian Theology: The Biblical Story and Our Faith <br>
+                            Author: Christopher W. Morgan</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                
+
+
+                  <div id="MNOtile" class="tile is-parent alphabetTile M">
+                    <article class="tile is-child box">
+                      <p class="title">M</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Anxious-Nothing-Finding-Chaotic
+                            -World/dp/0718074211/ref=sr_1_5?crid=OY680F4E64RH&dchild=1&keywor
+                            ds=christian+book+anxiety&qid=1600356015&sprefix=chirstian+book+a
+                            %2Caps%2C209&sr=8-5">
+                            Anxious for Nothing: Finding Calm in a Chaotic World <br>
+                            Author: Mac Lucado</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div id="MNOtile" class="tile is-parent alphabetTile N">
+                    <article class="tile is-child box">
+                      <p class="title">N</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Band-Belie
+                            vers-Book-1-Dissent-ebook/dp/B078SKRS9Y/ref=
+                            sr_1_1?crid=TXB3BN2YGZMI&dchild=1&keywords=b
+                            and+of+believers%2C+book+1+dissent&qid=16003
+                            56428&sprefix=band+of+believers+book+1+di%2C
+                            aps%2C187&sr=8-1">
+                            Band of Believers, Book 1: Dissent <br>
+                            Author: Jamie Lee Grey</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                  
+                  <div id="MNOtile" class="tile is-parent alphabetTile O">
+                    <article class="tile is-child box">
+                      <p class="title">O</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Christian-Theology-Biblical-
+                            Story-Faith/dp/1433651025/ref=sr_1_2?dchild=1&keywords=christi
+                            an+book+b&qid=1600356193&s=books&sr=1-2">
+                            Christian Theology: The Biblical Story and Our Faith <br>
+                            Author: Christopher W. Morgan</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+
+                  <div id="PQRtile" class="tile is-parent alphabetTile P">
+                    <article class="tile is-child box">
+                      <p class="title">P</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Anxious-Nothing-Finding-Chaotic
+                            -World/dp/0718074211/ref=sr_1_5?crid=OY680F4E64RH&dchild=1&keywor
+                            ds=christian+book+anxiety&qid=1600356015&sprefix=chirstian+book+a
+                            %2Caps%2C209&sr=8-5">
+                            Anxious for Nothing: Finding Calm in a Chaotic World <br>
+                            Author: Mac Lucado</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div id="PQRtile" class="tile is-parent alphabetTile Q">
+                    <article class="tile is-child box">
+                      <p class="title">Q</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Band-Belie
+                            vers-Book-1-Dissent-ebook/dp/B078SKRS9Y/ref=
+                            sr_1_1?crid=TXB3BN2YGZMI&dchild=1&keywords=b
+                            and+of+believers%2C+book+1+dissent&qid=16003
+                            56428&sprefix=band+of+believers+book+1+di%2C
+                            aps%2C187&sr=8-1">
+                            Band of Believers, Book 1: Dissent <br>
+                            Author: Jamie Lee Grey</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                  
+                  <div id="PQRtile" class="tile is-parent alphabetTile R">
+                    <article class="tile is-child box">
+                      <p class="title">R</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Christian-Theology-Biblical-
+                            Story-Faith/dp/1433651025/ref=sr_1_2?dchild=1&keywords=christi
+                            an+book+b&qid=1600356193&s=books&sr=1-2">
+                            Christian Theology: The Biblical Story and Our Faith <br>
+                            Author: Christopher W. Morgan</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                
+
+
+                  <div id="STUtile" class="tile is-parent alphabetTile S">
+                    <article class="tile is-child box">
+                      <p class="title">S</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Anxious-Nothing-Finding-Chaotic
+                            -World/dp/0718074211/ref=sr_1_5?crid=OY680F4E64RH&dchild=1&keywor
+                            ds=christian+book+anxiety&qid=1600356015&sprefix=chirstian+book+a
+                            %2Caps%2C209&sr=8-5">
+                            Anxious for Nothing: Finding Calm in a Chaotic World <br>
+                            Author: Mac Lucado</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div id="STUtile" class="tile is-parent alphabetTile T">
+                    <article class="tile is-child box">
+                      <p class="title">T</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Band-Belie
+                            vers-Book-1-Dissent-ebook/dp/B078SKRS9Y/ref=
+                            sr_1_1?crid=TXB3BN2YGZMI&dchild=1&keywords=b
+                            and+of+believers%2C+book+1+dissent&qid=16003
+                            56428&sprefix=band+of+believers+book+1+di%2C
+                            aps%2C187&sr=8-1">
+                            Band of Believers, Book 1: Dissent <br>
+                            Author: Jamie Lee Grey</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                  
+                  <div id="STUtile" class="tile is-parent alphabetTile U">
+                    <article class="tile is-child box">
+                      <p class="title">U</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Christian-Theology-Biblical-
+                            Story-Faith/dp/1433651025/ref=sr_1_2?dchild=1&keywords=christi
+                            an+book+b&qid=1600356193&s=books&sr=1-2">
+                            Christian Theology: The Biblical Story and Our Faith <br>
+                            Author: Christopher W. Morgan</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+              
+
+
+                  <div id="VWXtile" class="tile is-parent alphabetTile V">
+                    <article class="tile is-child box">
+                      <p class="title">V</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Anxious-Nothing-Finding-Chaotic
+                            -World/dp/0718074211/ref=sr_1_5?crid=OY680F4E64RH&dchild=1&keywor
+                            ds=christian+book+anxiety&qid=1600356015&sprefix=chirstian+book+a
+                            %2Caps%2C209&sr=8-5">
+                            Anxious for Nothing: Finding Calm in a Chaotic World <br>
+                            Author: Mac Lucado</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div id="VWXtile" class="tile is-parent alphabetTile W">
+                    <article class="tile is-child box">
+                      <p class="title">W</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Band-Belie
+                            vers-Book-1-Dissent-ebook/dp/B078SKRS9Y/ref=
+                            sr_1_1?crid=TXB3BN2YGZMI&dchild=1&keywords=b
+                            and+of+believers%2C+book+1+dissent&qid=16003
+                            56428&sprefix=band+of+believers+book+1+di%2C
+                            aps%2C187&sr=8-1">
+                            Band of Believers, Book 1: Dissent <br>
+                            Author: Jamie Lee Grey</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                  
+                  <div id="VWXtile" class="tile is-parent alphabetTile X">
+                    <article class="tile is-child box">
+                      <p class="title">X</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Christian-Theology-Biblical-
+                            Story-Faith/dp/1433651025/ref=sr_1_2?dchild=1&keywords=christi
+                            an+book+b&qid=1600356193&s=books&sr=1-2">
+                            Christian Theology: The Biblical Story and Our Faith <br>
+                            Author: Christopher W. Morgan</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+              
+
+
+                  <div id="YZtile" class="tile is-parent alphabetTile Y">
+                    <article class="tile is-child box">
+                      <p class="title">Y</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Anxious-Nothing-Finding-Chaotic
+                            -World/dp/0718074211/ref=sr_1_5?crid=OY680F4E64RH&dchild=1&keywor
+                            ds=christian+book+anxiety&qid=1600356015&sprefix=chirstian+book+a
+                            %2Caps%2C209&sr=8-5">
+                            Anxious for Nothing: Finding Calm in a Chaotic World <br>
+                            Author: Mac Lucado</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div id="YZtile" class="tile is-parent alphabetTile Z">
+                    <article class="tile is-child box">
+                      <p class="title">Z</p>
+                      <div class="content">
+                        <!--List goes here-->
+                        <ul>
+                          <li><a href="https://www.amazon.com/Band-Belie
+                            vers-Book-1-Dissent-ebook/dp/B078SKRS9Y/ref=
+                            sr_1_1?crid=TXB3BN2YGZMI&dchild=1&keywords=b
+                            and+of+believers%2C+book+1+dissent&qid=16003
+                            56428&sprefix=band+of+believers+book+1+di%2C
+                            aps%2C187&sr=8-1">
+                            Band of Believers, Book 1: Dissent <br>
+                            Author: Jamie Lee Grey</a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+
+              </div>
+  
+
+    <section id="more" class="hero is-fullheight partial is-hidden">
+        <article class="content is-fluid is-fullhd">
+          <div class="tile is-parent">
+            <div class="tile is-child is-light box is-vertical">
+              <h3 class="has-text-dark has-text-centered is-size-3"><i>More</i></h3>
+              <hr class="is-dark">
+              <p class="has-text-centered">
+                <a class="button is-primary is-medium is-fullwidth spa" href="/public/events">
+                  <img class="is-white-icon image is-bottom-nav-image has-right-margin" src="/static/icons/svg/date.svg"
+                    alt="Events" />
+                  Events
+                </a>
+              </p>
+              <p class="has-text-centered">
+                <a class="button is-primary is-medium is-fullwidth spa" href="/public/food-donations">
+                  <img class="is-white-icon image is-bottom-nav-image has-right-margin" src="/static/icons/svg/basket.svg"
+                    alt="Food Donations" />
+                  Food Box Donations
+                </a>
+              </p>
+              <p class="has-text-centered">
+                <a class="button is-primary is-medium is-fullwidth spa" href="/public/1689">
+                  <img class="is-white-icon image is-bottom-nav-image has-right-margin" src="/static/icons/svg/1689.svg"
+                    alt="1689 London Baptist Confession" />
+                  1689 London Baptist Confession
+                </a>
+              </p>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section>
+        <article>
+          <div id="iosModal" class="modal has-text-dark">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Install PBC App</p>
+                <button class="delete close-ios-modal" aria-label="close"></button>
+              </header>
+              <section class="modal-card-body">
+                <p class="image is-128x128 is-centered">
+                  <img src="/static/icons/png/logo.png" alt="Poland Baptist Church Install to iOS" width="20" height="15">
+                </p>
+                <p class="is-size-4">Install this application on your home screen for quick and easy access when you’re on
+                  the go.</p>
+                <p class="is-size-5">Just tap <img src="/static/icons/svg/export.svg" width="30" height="30" alt="Share">
+                  in the Safari menu bar and scroll down to <b><i>“Add to Home Screen”</i></b></p>
+              </section>
+              <footer class="modal-card-foot">
+                <button class="button is-medium close-ios-modal">Close</button>
+              </footer>
+            </div>
+        </div>
+          <div id="faqModal" class="modal has-text-dark">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Install PBC App</p>
+                <button class="delete close-faq-modal" aria-label="close"></button>
+              </header>
+              <section class="modal-card-body">
+                <p class="image is-128x128 is-centered">
+                  <img src="/static/icons/png/logo.png" alt="Poland Baptist Church Frequently Asked Questions" width="20"
+                    height="15">
+                </p>
+                <p class="is-size-4">Hi There! Thanks for stopping by and checking out the latest Livestreams, Sermons, Daily Devotionals, Events and Prayer Requests!</p>
+                <ul>
+                  <li>
+                    <i>This page is best viewed from a smart mobile device and can be installed for an
+                      App like experience.</i>
+                  </li>
+                  <li>
+                    <i><b>iPhone users</b></i> can click on the <b>"Install"</b> button from the menu for instructions.
+                  </li>
+                  <li>
+                    <i><b>Android users</b></i> can click on <b>"Add to Homescreen"</b> to install.
+                  </li>
+                  <li>
+                    Please contact <a href="mailto:support@polandchurch.org"><b>support@polandchurch.org</b></a> with any
+                    questions.
+                  </li>
+                  <li>Coming Soon: Recommended Reads!</li>
+                </ul>
+              </section>
+              <footer class="modal-card-foot">
+                <button class="button is-medium close-faq-modal">Dismiss</button>
+              </footer>
+            </div>
+          </div>
+          <div id="notificationModal" class="modal has-text-dark">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Notification</p>
+                <button class="delete close-notification-modal" aria-label="close"></button>
+              </header>
+              <section class="modal-card-body">
+                <p class="image is-128x128 is-centered">
+                  <img src="/static/icons/png/logo.png" alt="Poland Baptist Church Notification" width="20" height="15">
+                </p>
+                <p class="is-size-4" id="notification"></p>
+              </section>
+              <footer class="modal-card-foot">
+                <button class="button is-medium close-notification-modal">Dismiss</button>
+              </footer>
+            </div>
+          </div>
+        </article>
+      </section>
+
+
+      <script src="/static/js/pwacompat.min.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="/static/js/index.js"></script>
+
+    </main>
+
+    <script>
+
+      var reading = [
+        {
+          "class": "A",
+          "books": [
+            {
+              "title":"Anxious for Nothing: Finding Calm in a Chaotic World",
+              "author":"Mac Lucado"
+            }
+          ]
+        },
+        {
+          "class": "B",
+          "books": [
+            {
+              "title":"Band of Believers, Book 1: Dissent",
+              "author":"Jamie Lee Grey"
+            }
+          ]
+        },
+        {
+          "class": "C",
+            "books": [
+              {
+                "title":"Christian Theology: The Biblical Story and Our Faith",
+                "author":"Christopher W. Morgan"
+              }
+            ]
+        },
+        {
+          "class": "D",
+            "books": [
+              {
+                "title":"Driven By Desire: Insatiable Longings, Incredible Promises, Infinite God",
+                "author":"Thomas Fitzpatrick"
+              }
+            ]
+        },
+        {
+          "class": "E",
+            "books": [
+              {
+                "title":"Everybody, Always: Becoming Love in a World Full of Setbacks and Difficult People",
+                "author":"Bob Goff"
+              }
+            ]
+        },
+        {
+          "class": "F",
+            "books": [
+              {
+                "title":"Faith After Doubt: Why Your Beliefs Stopped Working and What to Do About It",
+                "author":"Brian D. McLaren"
+              },
+              {
+                "title":"Freedom from Anxious Thoughts and Feelings (A Two-Step Mindfulness Approach for Moving Beyond Fear and Worry)",
+                "author":"Scott Symington"
+              }
+            ]
+        },
+        {
+          "class": "G",
+            "books": [
+              {
+                "title":"Anxious for Nothing: Finding Calm in a Chaotic World",
+                "author":"Mac Lucado"
+              }
+            ]
+        },
+        {
+          "class": "H",
+            "books": [
+              {
+                "title":"Band of Believers, Book 1: Dissent",
+                "author":"Jamie Lee Grey"
+              }
+            ]
+        },
+        {
+          "class": "I",
+            "books": [
+              {
+                "title":"Christian Theology: The Biblical Story and Our Faith",
+                "author":"Christopher W. Morgan"
+              }
+            ]
+        },
+        {
+          "class": "J",
+            "books": [
+              {
+                "title":"Anxious for Nothing: Finding Calm in a Chaotic World",
+                "author":"Mac Lucado"
+              }
+            ]
+        },
+        {
+          "class": "K",
+            "books": [
+              {
+                "title":"Band of Believers, Book 1: Dissent",
+                "author":"Jamie Lee Grey"
+              }
+            ]
+        },
+        {
+          "class": "L",
+            "books": [
+              {
+                "title":"Christian Theology: The Biblical Story and Our Faith",
+                "author":"Christopher W. Morgan"
+              }
+            ]
+        },
+        {
+          "class": "M",
+            "books": [
+              {
+                "title":"Anxious for Nothing: Finding Calm in a Chaotic World",
+                "author":"Mac Lucado"
+              }
+            ]
+        },
+        {
+          "class": "N",
+            "books": [
+              {
+                "title":"Band of Believers, Book 1: Dissent",
+                "author":"Jamie Lee Grey"
+              }
+            ]
+        },
+        {
+          "class": "O",
+            "books": [
+              {
+                "title":"Christian Theology: The Biblical Story and Our Faith",
+                "author":"Christopher W. Morgan"
+              }
+            ]
+        },
+        {
+          "class": "P",
+            "books": [
+              {
+                "title":"Anxious for Nothing: Finding Calm in a Chaotic World",
+                "author":"Mac Lucado"
+              }
+            ]
+        },
+        {
+          "class": "Q",
+            "books": [
+              {
+                "title":"Band of Believers, Book 1: Dissent",
+                "author":"Jamie Lee Grey"
+              }
+            ]
+        },
+        {
+          "class": "R",
+            "books": [
+              {
+                "title":"Christian Theology: The Biblical Story and Our Faith",
+                "author":"Christopher W. Morgan"
+              }
+            ]
+        },
+        {
+          "class": "S",
+            "books": [
+              {
+                "title":"Anxious for Nothing: Finding Calm in a Chaotic World",
+                "author":"Mac Lucado"
+              }
+            ]
+        },
+        {
+          "class": "T",
+            "books": [
+              {
+                "title":"Band of Believers, Book 1: Dissent",
+                "author":"Jamie Lee Grey"
+              }
+            ]
+        },
+        {
+          "class": "U",
+            "books": [
+              {
+                "title":"Christian Theology: The Biblical Story and Our Faith",
+                "author":"Christopher W. Morgan"
+              }
+            ]
+        },
+        {
+          "class": "V",
+            "books": [
+              {
+                "title":"Anxious for Nothing: Finding Calm in a Chaotic World",
+                "author":"Mac Lucado"
+              }
+            ]
+        },
+        {
+          "class": "W",
+            "books": [
+              {
+                "title":"Band of Believers, Book 1: Dissent",
+                "author":"Jamie Lee Grey"
+              }
+            ]
+        },
+        {
+          "class": "X",
+            "books": [
+              {
+                "title":"Christian Theology: The Biblical Story and Our Faith",
+                "author":"Christopher W. Morgan"
+              }
+            ]
+        },
+        {
+          "class": "Y",
+            "books": [
+              {
+                "title":"Anxious for Nothing: Finding Calm in a Chaotic World",
+                "author":"Mac Lucado"
+              }
+            ]
+        },
+        {
+          "class": "Z",
+            "books": [
+              {
+                "title":"Band of Believers, Book 1: Dissent",
+                "author":"Jamie Lee Grey"
+              }
+            ]
+        }
+      ]
+
+          let A = document.querySelector('.A')
+          A.classList.toggle('is-active')
+
+          let B = document.querySelector('.B')
+          B.classList.toggle('is-active')
+
+          let C = document.querySelector('.C')
+          C.classList.toggle('is-active')
+
+          var i = 0
+        let pageloaded = document.querySelectorAll('.alphabetTile')
+        pageloaded.forEach(function(p){
+          if (i > 2){
+            p.classList.toggle('is-hidden')
+          }
+          i++
+        })
+
+      let alpha = document.querySelectorAll('.alphabet')
+      alpha.forEach(function(a){
+        a.addEventListener("click", function(e) {
+          e.preventDefault()
+
+          let currentTileGroup = document.querySelectorAll('.alphabetTile.is-active')
+          currentTileGroup.forEach(function(e){
+            e.classList.toggle('is-active')
+            e.classList.toggle('is-hidden')
+          })
+
+          let nextTileGroup = document.querySelectorAll(e.target.dataset.tile)
+          nextTileGroup.forEach(function(f){
+            f.classList.toggle('is-hidden')
+            f.classList.toggle('is-active')
+          })
+        })
+      })
+
+      const searchBar = document.getElementById('searchBar');
+
+      let timeout = null;
+      searchBar.addEventListener('keyup', (e) => {
+
+        let currentTileGroup = document.querySelectorAll('.alphabetTile.is-active')
+        currentTileGroup.forEach(function(e){
+            e.classList.toggle('is-active')
+            e.classList.toggle('is-hidden')
+        })
+
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+
+          const searchString = e.target.value;
+          const usersSearch = searchString.toLowerCase();
+
+          for (let i = 0; i < reading.length; i++) {
+            for (let j = 0; j < reading[i].books.length; j++) {
+              var bookTitle = reading[i].books[j].title.toLowerCase();
+              var bookAuthor = reading[i].books[j].author.toLowerCase();
+              var classLetter = '.'+reading[i].class;
+
+              if(bookTitle.includes(usersSearch) || bookAuthor.includes(usersSearch)){
+                document.querySelector(classLetter).classList.toggle('is-hidden');
+                document.querySelector(classLetter).classList.toggle('is-active');
+              }
+
+              else {
+                continue;
+              }
+            }
+          }
+        }, 600);   
+      })
+
+    </script>
+
+  </body>
+  
+</html>
