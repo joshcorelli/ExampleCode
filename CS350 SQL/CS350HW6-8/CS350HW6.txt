@@ -1,0 +1,34 @@
+Joshua Corelli
+
+E5.2.13
+
+SELECT   managerid, mfname, mlname, msalary
+FROM     manager
+WHERE    msalary > 
+            (SELECT avg(msalary)
+             FROM   manager) ;
+
+
+E5.2.14
+
+SELECT      managerid, mfname, mlname,  COUNT(*)
+FROM        manager, building
+WHERE       managerid = bmanagerid
+GROUP BY    managerid, mfname, mlname ;
+
+E5.2.15
+
+SELECT      managerid, mfname, mlname,  COUNT(*)
+FROM        manager, building
+WHERE       managerid = bmanagerid           
+GROUP BY    managerid, mfname, mlname
+HAVING      COUNT(*) > 1 ;
+
+E5.2.16
+
+SELECT      s.smemberid, s.smembername, COUNT(*)
+FROM        staffmember s, cleaning c
+WHERE       s.smemberid = c.smemberid           
+GROUP BY    s.smemberid, s.smembername ;
+
+

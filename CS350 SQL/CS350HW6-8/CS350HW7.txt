@@ -1,0 +1,33 @@
+Joshua Corelli
+
+E5.2.17
+
+SELECT DISTINCT s.smemberid, s.smembername
+FROM            staffmember s, cleaning c, apartment a, corpclient d
+WHERE           s.smemberid = c.smemberid
+                AND
+                c.aptno = a.aptno
+                AND
+                a.ccid = d.ccid
+                AND
+                d.cclocation = 'Chicago' ;
+
+E5.2.18
+
+SELECT     c.ccname, r.ccname
+FROM       corpclient c, corpclient r
+WHERE      c.ccidreferredby = r.ccid 
+           AND
+           c.ccindustry = 'Music' ;
+
+E5.2.19
+
+SELECT     buildingid, aptno, anoofbedrooms
+FROM       apartment
+WHERE      ccid IS NULL ;
+
+E5.2.20
+
+SELECT TOP 1     managerid, mfname, mlname, msalary, mbonus
+FROM             manager 
+ORDER BY         coalesce (msalary + mbonus, msalary, mbonus, 0) ;

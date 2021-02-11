@@ -1,0 +1,5 @@
+4
+Troll 4 2
+Rat 7 15
+Rat 9 3
+Troll 10 4
