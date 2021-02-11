@@ -1,0 +1,52 @@
+ CREATE TABLE buyer (
+ 	buyerID CHAR(10) NOT NULL,
+ 	BuyerFname VARCHAR(20) NOT NULL,
+ 	BuyerLname VARCHAR(20) NOT NULL,
+ 	BuyerPhonenum CHAR(10) NOT NULL,
+ 	PRIMARY KEY (buyerID)
+ ) ;
+ 
+ 
+ CREATE TABLE xbox (
+ 	XboxID CHAR(4) NOT NULL,
+ 	XboxType VARCHAR(20) NOT NULL,
+ 	WarrentyEndDate VARCHAR(20) NOT NULL,
+ 	BuyerID CHAR(10) NOT NULL,
+ 	PRIMARY KEY (XboxID)
+ ) ;
+ 
+ ALTER TABLE xbox
+	ADD FOREIGN KEY (BuyerID) REFERENCES buyer(BuyerID);
+	
+	
+ CREATE TABLE region (
+	RegionID CHAR(1) NOT NULL,
+	RegionName VARCHAR(20) NOT NULL,
+	PRIMARY KEY (RegionID)
+ ) ;
+	
+	
+ CREATE TABLE store (
+ 	StoreID CHAR(4) NOT NULL,
+ 	StoreName VARCHAR(20) NOT NULL,
+ 	StoreZip VARCHAR(10) NOT NULL,
+ 	RegionID CHAR(1) NOT NULL,
+ 	XboxID CHAR(4) NOT NULL,
+ 	PRIMARY KEY (StoreID)
+ ) ;
+ 
+ ALTER TABLE store
+	ADD FOREIGN KEY (RegionID) REFERENCES region(RegionID);
+	
+ ALTER TABLE store
+	ADD FOREIGN KEY (XboxID) REFERENCES xbox(XboxID);
+	
+ CREATE TABLE purchase (
+ 	PurchaseID CHAR(4) NOT NULL,
+ 	DateOfPurchase VARCHAR(20) NOT NULL,
+ 	BuyerID CHAR(10) NOT NULL,
+ 	StoreID CHAR(4) NOT NULL,
+ 	PRIMARY KEY (PurchaseID),
+ 	FOREIGN KEY (BuyerID) REFERENCES buyer(BuyerID),
+ 	FOREIGN KEY (StoreID) REFERENCES store(StoreID)
+ ) ;
